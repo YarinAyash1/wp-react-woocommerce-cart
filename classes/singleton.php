@@ -10,7 +10,7 @@ namespace ReactWooCart;
 /**
  * Trait Singleton
  *
- * @package HelloElementorWoo\Traits
+ * @package ReactWooCart
  * @author Yarin Ayash
  */
 trait Singleton
