@@ -11,4 +11,4 @@ const App = () => {
         </Store>
     );
 };
-render(<App />, document.getElementById(`acf-app`));
+render(<App />, document.getElementById(`woocommerce-react-app`));

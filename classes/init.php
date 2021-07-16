@@ -43,6 +43,6 @@ class Init
 
     public function init_frontend()
     {
-        echo '<div id="acf-app"></div>';
+        echo '<div id="woocommerce-react-app"></div>';
     }
 }
