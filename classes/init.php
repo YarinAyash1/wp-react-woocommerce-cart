@@ -25,6 +25,10 @@ class Init
     {
         add_action('wp_enqueue_scripts', [$this, 'init_scripts']);
         add_action('wp_footer', [$this, 'init_frontend']);
+
+
+        remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
+        add_action('woocommerce_single_product_summary', [$this, 'woocommerce_template_single_add_to_cart']);
     }
 
     public function init_scripts()
@@ -44,5 +48,10 @@ class Init
     public function init_frontend()
     {
         echo '<div id="woocommerce-react-app"></div>';
+    }
+
+    public function woocommerce_template_single_add_to_cart()
+    {
+        echo '<button id="add-to-cart-btn" data-product="' . get_the_ID() . '">Add to cart</button>';
     }
 }

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ShopContext } from "../../storeContext";
 const { useEffect, useContext } = wp.element;
-const Cart = () => {
+const Cart = ({ refresh }) => {
     const { store, setStore } = useContext(ShopContext)
 
 
@@ -12,7 +12,7 @@ const Cart = () => {
                 cart: res.data
             }
         ))
-    }, [])
+    }, [refresh])
     return (
         <div className="cart">
             {
