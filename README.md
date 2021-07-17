@@ -1,4 +1,4 @@
-# Wordpress React Woocommerce
+# Wordpress React Woocommerce Cart
 
 ## Start development
 ```
