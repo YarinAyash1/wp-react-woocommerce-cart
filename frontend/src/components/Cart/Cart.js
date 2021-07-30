@@ -10,6 +10,14 @@ const styles = {
 const Cart = ({ data }) => {
     const { store, setStore } = useContext(ShopContext)
 
+    useEffect(() => {
+        axios.get('/wp-json/wc/store/cart').then(res => setStore(
+            {
+                ...store,
+                cart: res.data
+            }
+        ))
+    }, [])
 
     useEffect(() => {
         setStore({
