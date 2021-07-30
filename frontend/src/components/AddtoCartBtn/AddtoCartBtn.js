@@ -13,7 +13,7 @@ const AddtoCartBtn = ({ productId, refreshCart, refreshStatus }) => {
                 'X-WC-Store-API-Nonce': storeApi.nonce
             }
         }).then(res => {
-            refreshCart()
+            refreshCart(res.data)
         });
     }
     return (

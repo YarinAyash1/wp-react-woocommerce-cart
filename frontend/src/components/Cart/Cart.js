@@ -1,20 +1,25 @@
 import axios from "axios";
 import { ShopContext } from "../../storeContext";
 const { useEffect, useContext } = wp.element;
-const Cart = ({ refresh }) => {
+const styles = {
+    position: 'fixed',
+    right: 0,
+    bottom: 0,
+    background: '#fff'
+}
+const Cart = ({ data }) => {
     const { store, setStore } = useContext(ShopContext)
 
 
     useEffect(() => {
-        axios.get('/wp-json/wc/store/cart').then(res => setStore(
-            {
-                ...store,
-                cart: res.data
-            }
-        ))
-    }, [refresh])
+        setStore({
+            ...store,
+            cart: data.cart
+        })
+
+    }, [data.cart])
     return (
-        <div className="cart">
+        <div className="cart" style={styles}>
             {
                 store.cart?.items?.length ? store.cart.items.map((item => {
                     return (
@@ -24,7 +29,7 @@ const Cart = ({ refresh }) => {
                     )
                 })) : null
             }
-        </div>
+        </div >
     )
 }
 

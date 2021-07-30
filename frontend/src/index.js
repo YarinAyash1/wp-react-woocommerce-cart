@@ -1,21 +1,6 @@
-import Cart from './components/Cart/Cart';
-import ProductsList from './components/ProductsList/ProductsList';
 import AddtoCartBtn from './components/AddtoCartBtn/AddtoCartBtn';
-import { Store } from './storeContext';
+import AppComponent from './components/AppComponent';
 const { render, useEffect } = wp.element;
-
-const App = ({ refresh, setRefresh }) => {
-    useEffect(() => {
-        console.log(refresh)
-    }, [refresh])
-    return (
-        <Store>
-            <Cart refresh={refresh} setRefresh={setRefresh} />
-            <ProductsList />
-        </Store>
-    );
-};
-
 
 const myApp = {
     refreshStatus: 0,
@@ -39,13 +24,18 @@ const myApp = {
     },
     renderApp() {
         if (this.elements.cart) {
-            this.cart = render(<App refresh={this.refreshStatus} setRefresh={() => this.setRefresh(status)} />, this.elements.cart);
+            this.cart = render(<AppComponent />, this.elements.cart);
+            window.appCart = this.cart;
         }
     },
     renderCart() {
         if (this.elements.add_to_cart) {
-            this.btnAddToCart = render(<AddtoCartBtn productId={this.elements.add_to_cart.dataset.product} refreshCart={() => {
-                this.refreshCart()
+            this.btnAddToCart = render(<AddtoCartBtn productId={this.elements.add_to_cart.dataset.product} refreshCart={(data = null) => {
+                if (this.cart) {
+                    this.cart.setState({
+                        cart: data,
+                    });
+                }
 
             }}
                 refreshStatus={this.refreshStatus}
