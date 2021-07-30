@@ -12,34 +12,28 @@ const myApp = {
     cart: null,
     btnAddToCart: null,
     init() {
-        this.renderApp();
         this.renderCart();
+        this.renderAddtoCartBtn();
     },
-    refreshCart() {
-        this.refreshStatus = !this.refreshStatus;
-        this.refreshApp();
-    },
-    refreshApp() {
-        this.renderApp();
-    },
-    renderApp() {
+    renderCart() {
         if (this.elements.cart) {
             this.cart = render(<AppComponent />, this.elements.cart);
             window.appCart = this.cart;
         }
     },
-    renderCart() {
+    renderAddtoCartBtn() {
         if (this.elements.add_to_cart) {
-            this.btnAddToCart = render(<AddtoCartBtn productId={this.elements.add_to_cart.dataset.product} refreshCart={(data = null) => {
-                if (this.cart) {
-                    this.cart.setState({
-                        cart: data,
-                    });
-                }
-
-            }}
-                refreshStatus={this.refreshStatus}
-            />, this.elements.add_to_cart);
+            this.btnAddToCart = render(
+                <AddtoCartBtn
+                    productId={this.elements.add_to_cart.dataset.product}
+                    refreshCart={(data = null) => {
+                        if (this.cart) {
+                            this.cart.setState({
+                                cart: data,
+                            });
+                        }
+                    }}
+                />, this.elements.add_to_cart);
         }
     }
 }
